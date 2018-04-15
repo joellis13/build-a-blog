@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+    <head>
+        <title>{{title}}</title>
+        <style>
+            .error {
+                color:red;
+                font-style: italic;
+            }
+
+            ul {
+                list-style-type: none;
+                padding-left: 5px;
+            }
+
+            h1 {
+                text-align: center;
+            }
+
+            div {
+                display: inline-block;
+                padding: 5px;
+                }
+        </style>
+    </head>
+<body>
+
+    <div>
+        <a href="/blog">Main Blog Page</a>
+    </div>
+    <div>
+        <a href="/newpost">Add a Blog Entry</a>
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+
+</body>
+</html>
