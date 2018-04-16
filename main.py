@@ -1,4 +1,3 @@
-
 from flask import Flask, request, redirect, render_template, session, flash
 from flask_sqlalchemy import SQLAlchemy
 
@@ -22,8 +21,15 @@ class Blog(db.Model):
 
 @app.route('/blog')
 def blog():
-    blogs = Blog.query.all()
-    return render_template('blog.html', blogs=blogs)
+    if (request.args.get('id')):
+        id = request.args.get('id')
+        blog = Blog.query.filter_by(id=id).first()
+        title = blog.title
+        body = blog.body
+        return render_template('viewpost.html', title=title, body=body)
+    else:
+        blogs = Blog.query.all()
+        return render_template('blog.html', blogs=blogs)
 
 @app.route('/newpost', methods=['POST', 'GET'])
 def newpost():
@@ -44,7 +50,8 @@ def newpost():
             new_blog = Blog(title, body_name)
             db.session.add(new_blog)
             db.session.commit()
-            return redirect('/blog')
+            id = str(new_blog.id)
+            return redirect('/blog?id=' + id)
 
         else:
             return render_template('newpost.html', title_error=title_error, body_error=body_error)
