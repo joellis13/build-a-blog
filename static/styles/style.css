@@ -1,0 +1,18 @@
+.error {
+    color:red;
+    font-style: italic;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 5px;
+}
+
+h1 {
+    text-align: center;
+}
+
+div {
+    display: inline-block;
+    padding: 5px;
+    }
